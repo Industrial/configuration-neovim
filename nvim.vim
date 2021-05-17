@@ -264,6 +264,9 @@ function! SetNvimFindingSearchingReplacing()
   " Insert matching code automatically.
   Plug 'Spaceghost/vim-matchit'
 
+  " Searching and replacing in files
+  Plug 'dkprice/vim-easygrep'
+
   "source ~/.fzf/plugin/fzf.vim
   Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
   Plug 'junegunn/fzf.vim'
@@ -352,6 +355,131 @@ endfunction
 function! SetNvimVisualInformation()
   " New home screen
   Plug 'mhinz/vim-startify'
+
+  Plug 'junegunn/goyo.vim'
+
+  Plug 'liuchengxu/vim-which-key'
+    nnoremap <silent> <leader> :silent WhichKey '<Space>'<CR>
+    vnoremap <silent> <leader> :silent <c-u> :silent WhichKeyVisual '<Space>'<CR>
+
+    let g:which_key_sep = '→'
+    let g:which_key_use_floating_win = 0
+
+    let g:which_key_map =  {}
+    let g:which_key_map['/'] = [":'<,'>TComment",                      'Comment']
+    let g:which_key_map['d'] = [':call <SID>show_documentation()<cr>', 'Documentation']
+    let g:which_key_map['S'] = [':Startify',                           'start screen']
+    let g:which_key_map['z'] = [':Goyo',                               'zen']
+
+    let g:which_key_map[' '] = {
+      \ 'name': '+Easymotion ' ,
+      \ 'f': ['<plug>(easymotion-prefix)f', 'find {char} to the right'],
+      \ 'F': ['<plug>(easymotion-prefix)F', 'find {char} to the left'],
+      \ 't': ['<plug>(easymotion-prefix)t', 'till before the {char} to the right'],
+      \ 'T': ['<plug>(easymotion-prefix)T', 'till after the {char} to the left'],
+      \ 'w': ['<plug>(easymotion-prefix)w', 'beginning of word forward'],
+      \ 'W': ['<plug>(easymotion-prefix)W', 'beginning of WORD forward'],
+      \ 'b': ['<plug>(easymotion-prefix)b', 'beginning of word backward'],
+      \ 'B': ['<plug>(easymotion-prefix)B', 'beginning of WORD backward'],
+      \ 'e': ['<plug>(easymotion-prefix)e', 'end of word forward'],
+      \ 'E': ['<plug>(easymotion-prefix)E', 'end of WORD forward'],
+      \ 'g': {
+        \ 'name': '+Backwards ',
+        \ 'e': ['<plug>(easymotion-prefix)ge', 'end of word backward'],
+        \ 'E': ['<plug>(easymotion-prefix)gE', 'end of WORD backward'],
+        \ },
+      \ 'j': ['<plug>(easymotion-prefix)j', 'line downward'],
+      \ 'k': ['<plug>(easymotion-prefix)k', 'line upward'],
+      \ 'n': ['<plug>(easymotion-prefix)n', 'jump to latest "/" or "?" forward'],
+      \ 'N': ['<plug>(easymotion-prefix)N', 'jump to latest "/" or "?" backward.'],
+      \ 's': ['<plug>(easymotion-prefix)s', 'find(search) {char} forward and backward.'],
+      \ }
+
+    let g:which_key_map.w = {
+      \ 'name': '+Window ',
+      \ 'w': ['<C-W>w',     'Other Window'],
+      \ 'd': ['<C-W>c',     'Close Window'],
+      \ 'h': ['<C-W>h',     'Left'],
+      \ 'H': ['<C-W>5>',    'Left (Resize)'],
+      \ 'j': ['<C-W>j',     'Down'],
+      \ 'J': [':resize +5', 'Down (Resize)'],
+      \ 'k': ['<C-W>k',     'Up'],
+      \ 'K': [':resize -5', 'Up (Resize)'],
+      \ 'l': ['<C-W>l',     'Right'],
+      \ 'L': ['<C-W>5<',    'Right (Resize)'],
+      \ '=': ['<C-W>=',     'Balance'],
+      \ 's': ['<C-W>s',     'Horizontal'],
+      \ '-': ['<C-W>s',     'Horizontal'],
+      \ 'v': ['<C-W>v',     'Vertical'],
+      \ '|': ['<C-W>v',     'Vertical'],
+      \ '?': [':Windows',   'Windows'],
+      \ }
+
+    let g:which_key_map.s = {
+      \ 'name': '+Search ',
+      \ '/': [':History/',  'History'],
+      \ ';': [':Commands',  'Commands'],
+      \ 'b': [':BLines',    'Buffer Find'],
+      \ 'B': [':Buffers',   'Buffers'],
+      \ 'c': [':Commits',   'Commits'],
+      \ 'C': [':BCommits',  'Buffer Commits'],
+      \ 'f': [':Ag',        'Find In Files'],
+      \ 'F': [':Files',     'Find File'],
+      \ 'g': [':GFiles',    'Git Files'],
+      \ 'G': [':GFiles?',   'Git Files (Modified)'],
+      \ 'h': [':History',   'File History'],
+      \ 'H': [':History?',  'Command History'],
+      \ 'l': [':Lines',     'Lines'],
+      \ 'p': [':Helptags',  'Help Tags'],
+      \ 's': [':Snippets',  'Snippets'],
+      \ 'S': [':Colors',    'Colors'],
+      \ 'y': [':Filetypes', 'File Types'],
+      \ }
+
+    let g:which_key_map.v = {
+      \ 'name': '+FindReplace ',
+      \ 'o': ['<Plug>EgMapGrepOptions', 'Options Buffer'],
+      \ 'v': ['<Plug>EgMapGrepCurrentWord_v', 'Grep Word'],
+      \ 'V': ['<Plug>EgMapGrepCurrentWord_V', 'Grep Whole Word'],
+      \ 'a': ['<Plug>EgMapGrepCurrentWord_a', 'Grep Add Word'],
+      \ 'A': ['<Plug>EgMapGrepCurrentWord_A', 'Grep Add Whole Word'],
+      \ 'r': ['<Plug>EgMapGrepCurrentWord_r', 'Grep Replace Word'],
+      \ 'R': ['<Plug>EgMapGrepCurrentWord_R', 'Grep Replace Whole Word'],
+      \ 'y': {
+        \ 'name': '+Options ',
+        \ 'a': [':<SNR>70_ActivateAll()<cr>',                      'Activate All'],
+        \ 'b': [':<SNR>70_ActivateBuffers()<cr>',                  'Activate Buffers'],
+        \ 't': [':<SNR>70_ActivateTracked()<cr>',                  'Activate Tracked'],
+        \ 'u': [':<SNR>70_ActivateUser()<cr>',                     'Activate User'],
+        \ 'I': [':<SNR>70_SetFilesToInclude()<cr>',                'Set Files to Include'],
+        \ 'x': [':<SNR>70_SetFilesToExclude()<cr>',                'Set Files to Exclude'],
+        \ 'c': [':<SNR>70_ToggleCommand()<cr>',                    'Toggle Command'],
+        \ 'r': [':<SNR>70_ToggleRecursion()<cr>',                  'Toggle Recursion'],
+        \ 'd': [':<SNR>70_ToggleBufferDirectories()<cr>',          'Toggle Buffer Directories'],
+        \ 'i': [':<SNR>70_ToggleIgnoreCase()<cr>',                 'Toggle Ignore Case'],
+        \ 'h': [':<SNR>70_ToggleHidden()<cr>',                     'Toggle Hidden'],
+        \ 'B': [':<SNR>70_Binary()<cr>',                           'Binary'],
+        \ 'w': [':<SNR>70_Window()<cr>',                           'Window'],
+        \ 'o': [':<SNR>70_OpenWindow()<cr>',                       'Open Window'],
+        \ 'g': [':<SNR>70_EveryMatch()<cr>',                       'Every Match'],
+        \ 'p': [':<SNR>70_JumpToMatch()<cr>',                      'Jump To Match'],
+        \ '!': [':<SNR>70_WholeWord()<cr>',                        'Whole Word'],
+        \ '~': [':<SNR>70_PatternType()<cr>',                      'Pattern Type'],
+        \ 'e': [':<SNR>70_EchoFilesSearched()<cr>',                'Echo Files Searched'],
+        \ 's': [':<SNR>70_Sort()<cr>',                             'Sort'],
+        \ 'm': [':<SNR>70_ToggleReplaceWindowMode()<cr>',          'Toggle Replace Window Mode'],
+        \ '?': [':<SNR>70_ToggleOptionsDisplay()<cr>',             'Toggle Options Display'],
+        \ 'v': [':<SNR>70_EchoGrepCommand()<cr>',                  'Echo Grep Command'],
+        \ '|': [':<SNR>70_EchoOptionsSet()<cr>',                   'Echo Options Set'],
+        \ '*': [':<SNR>70_ToggleFileAssociationsInExplorer()<cr>', 'Toggle File Associations In Explorer'],
+        \ },
+      \ }
+
+    " Register Which Key Map
+    autocmd VimEnter * call which_key#register('<Space>', "g:which_key_map")
+
+  " default is 1000
+  set timeoutlen=100
 
   " Show the command being executed
   set showcmd
