@@ -69,7 +69,7 @@ endfunction
 
 function! SetNvimCompletion()
   " Sorting
-  vnoremap <silent> <leader>s :sort<cr>
+  " vnoremap <silent> <leader>s :sort<cr>
 
   " complete brackets / pairs
   Plug 'Raimondi/delimitMate'
