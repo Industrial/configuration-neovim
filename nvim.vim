@@ -21,21 +21,6 @@ function! SetNvimBuffersAndFiles()
 
   Plug 'vim-airline/vim-airline'
   Plug 'vim-airline/vim-airline-themes'
-    " let g:airline_theme='base16_oceanicnext'
-
-    "    
-    "    
-    "    
-    "    
-    "    
-    "  
-    "  
-
-    "let g:airline_left_sep=' '
-    "let g:airline_left_alt_sep='|'
-    "let g:airline_right_sep=' '
-    "let g:airline_right_alt_sep='|'
-
     let g:airline_left_sep=''
     let g:airline_left_alt_sep=''
     let g:airline_right_sep=''
@@ -74,10 +59,6 @@ endfunction
 
 function! SetNvimColorSchemes()
   let g:base16colorspace=256
-
-  " Make colorschemes work in the terminal
-  "Plug 'vim-scripts/CSApprox'
-  "set t_Co=256
 
   Plug 'chriskempson/base16-vim'
 endfunction
@@ -318,24 +299,17 @@ function! SetNvimMovement()
   " under it)
   set scrolloff=50
 
+
   " TODO: nvim only
   " improved buffer delete
   Plug 'Industrial/vim-smartbd'
   Plug 'Industrial/vim-smartbw'
 
-  nmap <leader>d :SmartBd<cr>
+  " nmap <leader>d :SmartBd<cr>
   nmap <leader>c :SmartBw<cr>
 endfunction
 
 function! SetNvimTmuxSupport()
-  "    
-  "    
-  "    
-  "    
-  "    
-  "  
-  "  
-
   " Color the tmux line like airline
   " :TmuxlineSnapshot! ~/.tmuxline
   Plug 'edkolev/tmuxline.vim'
