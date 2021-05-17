@@ -218,7 +218,9 @@ function! SetNvimFileTypes()
     " not in      | ∉
 
   " JSON
-  " Plug 'elzr/vim-json'
+  Plug 'elzr/vim-json'
+    " Don't hide quotes in JSON files.
+    let g:vim_json_syntax_conceal=0
 
   " TypeScript
   Plug 'HerringtonDarkholme/yats'
@@ -235,7 +237,8 @@ function! SetNvimFileTypes()
   " MoonScript
   Plug 'leafo/moonscript-vim'
 
-  " Plug 'MaxMEllon/vim-jsx-pretty'
+  " Fish
+  Plug 'blankname/vim-fish'
 
   " Support ANSI Escape Characters in vim
   " Plug 'powerman/vim-plugin-AnsiEsc'
