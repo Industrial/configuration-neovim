@@ -325,6 +325,8 @@ endfunction
 function! SetNvimVersionControl()
   " # Version Control
   Plug 'tpope/vim-fugitive'
+  Plug 'junegunn/gv.vim'
+  Plug 'mhinz/vim-signify'
 
   Plug 'mattn/webapi-vim'
   Plug 'mattn/gist-vim'
