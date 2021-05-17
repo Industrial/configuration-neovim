@@ -13,8 +13,7 @@ function! SetNvimBuffersAndFiles()
     map <leader>[ :NERDTreeToggle<cr>
     map <leader>{ :NERDTreeFind<cr>
 
-  " Plug 'majutsushi/tagbar'
-  "   map <leader>] :TagbarToggle<cr>
+  Plug 'Xuyuanp/nerdtree-git-plugin'
 
   " Color the prompt like airline.
   " :PromptlineSnapshot! ~/.promptline.sh airline
