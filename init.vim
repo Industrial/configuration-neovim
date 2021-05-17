@@ -20,8 +20,8 @@ let g:python3_host_prog='/usr/bin/python3'
 map <leader>sy :syntax sync fromstart<cr>
 
 " open and reload init.vim
-map <leader>v :edit ~/.config/nvim/init.vim<cr>
-map <leader>V :bufdo :source ~/.config/nvim/init.vim<cr>:bufdo :filetype detect<cr>
+map <leader>i :edit ~/.config/nvim/init.vim<cr>
+map <leader>I :bufdo :source ~/.config/nvim/init.vim<cr>:bufdo :filetype detect<cr>
 
 " load vundle
 call plug#begin()
