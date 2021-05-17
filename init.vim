@@ -8,8 +8,9 @@ filetype plugin indent on
 syntax on
 
 " Set the map leader key
-let mapleader=','
-let maplocalleader='m'
+noremap <Space> <Nop>
+let mapleader="\<Space>"
+let maplocalleader=','
 
 " Support for python plugins
 let g:python_host_prog='/usr/bin/python2'
