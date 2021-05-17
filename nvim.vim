@@ -270,22 +270,9 @@ function! SetNvimFindingSearchingReplacing()
   "source ~/.fzf/plugin/fzf.vim
   Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
   Plug 'junegunn/fzf.vim'
-    map <c-f> :Ag<cr>
-    map <c-p> :Files $PWD<cr>
 
   " keybind: gc
   Plug 'tomtom/tcomment_vim'
-
-  vnoremap <silent> <C-/> :TComment
-
-  " # Cut, Copy and Paste
-  "Plug 'maxbrunsfeld/vim-yankstack'
-
-  " Don't overwrite unnamed reg on paste
-  " TODO: More explanation.
-  xnoremap <silent> p p:if v:register == '"'<bar>
-                    \   let @@=@0<bar>
-                    \ endif<cr>
 endfunction
 
 function! SetNvimIndentation()
