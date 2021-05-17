@@ -113,13 +113,16 @@ function! SetNvimCompletion()
   "     \ }
 
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
-    " CocInstall coc-actions coc-css coc-cssmodules coc-eslint coc-git
-    " coc-gist coc-graphql coc-highlight coc-html coc-json coc-prisma coc-sh
-    " coc-snippets coc-svg coc-tsserver coc-vimlsp coc-yaml coc-python
+    " TODO: This one needs a config file. Why?
+    " coc-graphql
+
+    " CocInstall coc-actions coc-css coc-cssmodules coc-eslint coc-highlight
+    " coc-html coc-json coc-prisma coc-sh coc-snippets coc-svg coc-tsserver
+    " coc-vimlsp coc-yaml coc-python
 
     set updatetime=300
     set shortmess+=c
-    set signcolumn=yes
+    set signcolumn=auto:1-9
 
     " Use <c-space> to trigger completion.
     if has('nvim')
@@ -146,8 +149,6 @@ function! SetNvimCompletion()
     nmap <silent> gr <Plug>(coc-references)
 
     " Use K to show documentation in preview window.
-    nnoremap <silent> K :call <SID>show_documentation()<cr>
-
     function! s:show_documentation()
       if (index(['vim','help'], &filetype) >= 0)
         execute 'h '.expand('<cword>')
@@ -155,6 +156,17 @@ function! SetNvimCompletion()
         call CocAction('doHover')
       endif
     endfunction
+    nnoremap <silent> K :call <SID>show_documentation()<cr>
+
+    " Applying codeAction to the selected region.
+    " Example: `<leader>aap` for current paragraph
+    xmap <leader>a  <Plug>(coc-codeaction-selected)
+    nmap <leader>a  <Plug>(coc-codeaction-selected)
+
+    " Remap keys for applying codeAction to the current buffer.
+    nmap <leader>ac  <Plug>(coc-codeaction)
+    " Apply AutoFix to problem on the current line.
+    nmap <leader>qf  <Plug>(coc-fix-current)
 
     " Highlight the symbol and its references when holding the cursor.
     autocmd CursorHold * silent call CocActionAsync('highlight')
