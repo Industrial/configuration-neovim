@@ -1,17 +1,20 @@
 function! SetVSCodeBuffersAndFiles()
-  function! s:split(...) abort
-    let direction = a:1
-    let file = a:2
-    call VSCodeCall(direction == 'h' ? 'workbench.action.splitEditorDown' : 'workbench.action.splitEditorRight')
-    if file != ''
-      call VSCodeExtensionNotify('open-file', expand(file), 'all')
-    endif
+  " function! s:split(...) abort
+  "   let direction = a:1
+  "   let file = a:2
+  "   call VSCodeCall(direction == 'h' ? 'workbench.action.splitEditorDown' : 'workbench.action.splitEditorRight')
+  "   if file != ''
+  "     call VSCodeExtensionNotify('open-file', expand(file), 'all')
+  "   endif
+  " endfunction
+  function! s:split(...)
+    call VSCodeCall(a:1 == 'h' ? 'workbench.action.splitEditorDown' : 'workbench.action.splitEditorRight')
   endfunction
 
-  function! s:splitNew(...)
-    let file = a:2
-    call s:split(a:1, file == '' ? '__vscode_new__' : file)
-  endfunction
+  " function! s:splitNew(...)
+  "   let file = a:2
+  "   call s:split(a:1, file == '' ? '__vscode_new__' : file)
+  " endfunction
 
   function! s:closeOtherEditors()
     call VSCodeNotify('workbench.action.closeEditorsInOtherGroups')
@@ -26,11 +29,12 @@ function! SetVSCodeBuffersAndFiles()
     endfor
   endfunction
 
-  command! -complete=file -nargs=? Split call <SID>split('h', <q-args>)
-  command! -complete=file -nargs=? Vsplit call <SID>split('v', <q-args>)
-  command! -complete=file -nargs=? New call <SID>split('h', '__vscode_new__')
-  command! -complete=file -nargs=? Vnew call <SID>split('v', '__vscode_new__')
-  command! -bang Only if <q-bang> == '!' | call <SID>closeOtherEditors() | else | call VSCodeNotify('workbench.action.joinAllGroups') | endif
+  " TODO: WTF does this do..
+  " command! -complete=file -nargs=? Split call <SID>split('h', <q-args>)
+  " command! -complete=file -nargs=? Vsplit call <SID>split('v', <q-args>)
+  " command! -complete=file -nargs=? New call <SID>split('h', '__vscode_new__')
+  " command! -complete=file -nargs=? Vnew call <SID>split('v', '__vscode_new__')
+  " command! -bang Only if <q-bang> == '!' | call <SID>closeOtherEditors() | else | call VSCodeNotify('workbench.action.joinAllGroups') | endif
 
   nnoremap <silent> <C-w>s :call <SID>split('h')<CR>
   xnoremap <silent> <C-w>s :call <SID>split('h')<CR>
@@ -38,18 +42,15 @@ function! SetVSCodeBuffersAndFiles()
   nnoremap <silent> <C-w>v :call <SID>split('v')<CR>
   xnoremap <silent> <C-w>v :call <SID>split('v')<CR>
 
-  nnoremap <silent> <C-w>n :call <SID>splitNew('h', '__vscode_new__')<CR>
-  xnoremap <silent> <C-w>n :call <SID>splitNew('h', '__vscode_new__')<CR>
-
   nnoremap <silent> <C-w>= :<C-u>call VSCodeNotify('workbench.action.evenEditorWidths')<CR>
   xnoremap <silent> <C-w>= :<C-u>call VSCodeNotify('workbench.action.evenEditorWidths')<CR>
 
-  nnoremap <silent> <C-w>> :<C-u>call <SID>manageEditorSize(v:count, 'increase')<CR>
-  xnoremap <silent> <C-w>> :<C-u>call <SID>manageEditorSize(v:count, 'increase')<CR>
+  nnoremap <silent> <C-w>< :<C-u>call <SID>manageEditorSize(v:count, 'increase')<CR>
+  xnoremap <silent> <C-w>< :<C-u>call <SID>manageEditorSize(v:count, 'increase')<CR>
   nnoremap <silent> <C-w>+ :<C-u>call <SID>manageEditorSize(v:count, 'increase')<CR>
   xnoremap <silent> <C-w>+ :<C-u>call <SID>manageEditorSize(v:count, 'increase')<CR>
-  nnoremap <silent> <C-w>< :<C-u>call <SID>manageEditorSize(v:count, 'decrease')<CR>
-  xnoremap <silent> <C-w>< :<C-u>call <SID>manageEditorSize(v:count, 'decrease')<CR>
+  nnoremap <silent> <C-w>> :<C-u>call <SID>manageEditorSize(v:count, 'decrease')<CR>
+  xnoremap <silent> <C-w>> :<C-u>call <SID>manageEditorSize(v:count, 'decrease')<CR>
   nnoremap <silent> <C-w>- :<C-u>call <SID>manageEditorSize(v:count, 'decrease')<CR>
   xnoremap <silent> <C-w>- :<C-u>call <SID>manageEditorSize(v:count, 'decrease')<CR>
 
@@ -64,6 +65,10 @@ function! SetVSCodeBuffersAndFiles()
   xnoremap <silent> <C-l> :call VSCodeNotify('workbench.action.navigateRight')<CR>
 
   nnoremap <silent> <C-w>_ :<C-u>call VSCodeNotify('workbench.action.toggleEditorWidths')<CR>
+
+  " Folds
+  nnoremap <silent> zc :call VSCodeNotify('editor.fold')<cr>
+  nnoremap <silent> zo :call VSCodeNotify('editor.unfold')<cr>
 endfunction
 
 function! SetVSCodeVisualInformation()
@@ -73,6 +78,16 @@ endfunction
 
 function! SetVSCodeFindingSearchAndReplacing()
   " Bind C-/ to vscode commentary since calling from vscode produces double comments due to multiple cursors
-  xnoremap <silent> <C-/> :call Comment()<CR>
-  nnoremap <silent> <C-/> :call Comment()<CR>
+  " xnoremap <silent> <C-/> :call Comment()<CR>
+  " nnoremap <silent> <C-/> :call Comment()<CR>
+  
+  xnoremap <silent> <C-/> <Plug>VSCodeCommentaryLine
+  nnoremap <silent> <C-/> <Plug>VSCodeCommentaryLine
+
+  xmap gc <Plug>VSCodeCommentary
+  nmap gc <Plug>VSCodeCommentary
+  omap gc <Plug>VSCodeCommentary
+  xmap gcc <Plug>VSCodeCommentaryLine
+
+  Plug 'easymotion/vim-easymotion'
 endfunction
