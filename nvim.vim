@@ -2,17 +2,6 @@ function! SetNvimBuffersAndFiles()
   Plug 'Industrial/vim-smartbd'
   Plug 'Industrial/vim-smartbw'
 
-  Plug 'scrooloose/nerdtree'
-    let g:NERDTreeAutoDeleteBuffer=1
-    let g:NERDTreeCascadeOpenSingleChildDir=1
-    let g:NERDTreeCascadeSingleChildDir=0
-    let g:NERDTreeCaseSensitiveSort=1
-    let g:NERDTreeShowFiles=1
-    let g:NERDTreeShowHidden=1
-    let g:NERDTreeMinimalUI=1
-    map <leader>[ :NERDTreeToggle<cr>
-    map <leader>{ :NERDTreeFind<cr>
-
   Plug 'Xuyuanp/nerdtree-git-plugin'
 
   " Color the prompt like airline.
@@ -51,7 +40,7 @@ endfunction
 
 function! FinalizeNvimBuffersAndFiles()
   " Open NERDTree and move the cursor to the right split, the file buffer.
-  autocmd VimEnter * NERDTree | wincmd l
+  " autocmd VimEnter * NERDTree | wincmd l
 
   " Automatically reveal buffer in tree
   " autocmd BufEnter $PWD/*.* NERDTreeFind | wincmd l
