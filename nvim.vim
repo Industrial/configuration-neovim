@@ -63,44 +63,6 @@ function! SetNvimCompletion()
   " complete brackets / pairs
   Plug 'Raimondi/delimitMate'
 
-  " " Linting hints in the gutter.
-  " Plug 'w0rp/ale'
-  "   let g:ale_set_loclist = 0
-  "   let g:ale_set_quickfix = 1
-  "   let g:ale_open_list = 0
-  "   let g:ale_keep_list_window_open = 0
-  "   let g:ale_sign_column_always = 1
-  "   let g:ale_sign_error = 'E'
-  "   let g:ale_sign_info = 'I'
-  "   let g:ale_sign_warning = 'W'
-  "   let g:ale_linters = {
-  "     \ 'javascript': [
-  "     \   'eslint'
-  "     \ ],
-  "     \ 'typescript': [
-  "     \   'eslint'
-  "     \ ],
-  "     \ 'typescriptreact': [
-  "     \   'eslint'
-  "     \ ]
-  "     \ }
-  "   let g:ale_fix_on_save = 1
-  "   let g:ale_fixers = {
-  "     \ '*': [
-  "     \   'remove_trailing_lines',
-  "     \   'trim_whitespace',
-  "     \ ],
-  "     \ 'javascript': [
-  "     \   'eslint'
-  "     \ ],
-  "     \ 'typescript': [
-  "     \   'eslint'
-  "     \ ],
-  "     \ 'typescriptreact': [
-  "     \   'eslint'
-  "     \ ]
-  "     \ }
-
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
     " TODO: This one needs a config file. Why?
     " coc-graphql
