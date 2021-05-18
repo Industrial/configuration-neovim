@@ -228,6 +228,10 @@ function! SetNvimFileTypes()
   " Fish
   Plug 'blankname/vim-fish'
 
+  " Zip Files (supports browsin in zip files and enables go to definition
+  " support for Yarn V2 projects)
+  Plug 'lbrayner/vim-rzip'
+
   " Support ANSI Escape Characters in vim
   " Plug 'powerman/vim-plugin-AnsiEsc'
 
