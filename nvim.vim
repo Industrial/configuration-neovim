@@ -64,12 +64,49 @@ function! SetNvimCompletion()
   Plug 'Raimondi/delimitMate'
 
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
-    " TODO: This one needs a config file. Why?
-    " coc-graphql
+    " Generic
+    Plug 'voldikss/coc-dash-complete', {'do': 'yarn install --frozen-lockfile'}
+    Plug 'voldikss/coc-dot-complete', {'do': 'yarn install --frozen-lockfile'}
+    Plug 'neoclide/coc-snippets', {'do': 'yarn install --frozen-lockfile'}
+    Plug 'weirongxu/coc-explorer', {'do': 'yarn install --frozen-lockfile'}
+      :nnoremap <leader>[ :CocCommand explorer<cr>
+      " TODO: wincmd doesn't work.
+      " autocmd VimEnter * :CocCommand explorer | wincmd l
 
-    " CocInstall coc-actions coc-css coc-cssmodules coc-eslint coc-highlight
-    " coc-html coc-json coc-prisma coc-sh coc-snippets coc-svg coc-tsserver
-    " coc-vimlsp coc-yaml coc-python
+    " CSS
+    Plug 'neoclide/coc-css', {'do': 'yarn install --frozen-lockfile'}
+    Plug 'antonk52/coc-cssmodules', {'do': 'yarn install --frozen-lockfile'}
+    Plug 'neoclide/coc-stylelint', {'do': 'yarn install --frozen-lockfile'}
+
+    " JavaScript, TypeScript, Node.js, Deno
+    Plug 'neoclide/coc-tsserver', {'do': 'yarn install --frozen-lockfile'}
+    Plug 'fannheyward/coc-deno', {'do': 'yarn install --frozen-lockfile'}
+    Plug 'neoclide/coc-eslint', {'do': 'yarn install --frozen-lockfile'}
+
+    " GraphQL
+    Plug 'felippepuhle/coc-graphql', {'do': 'yarn install --frozen-lockfile'}
+
+    " HTML
+    Plug 'neoclide/coc-html', {'do': 'yarn install --frozen-lockfile'}
+    Plug 'yaegassy/coc-htmlhint', {'do': 'yarn install --frozen-lockfile'}
+
+    " SVG
+    Plug 'iamcco/coc-svg', {'do': 'yarn install --frozen-lockfile'}
+
+    " JSON
+    Plug 'neoclide/coc-json', {'do': 'yarn install --frozen-lockfile'}
+
+    " Markdown
+    Plug 'fannheyward/coc-markdownlint', {'do': 'yarn install --frozen-lockfile'}
+
+    " Bash
+    Plug 'josa42/coc-sh', {'do': 'yarn install --frozen-lockfile'}
+
+    " Vim
+    Plug 'iamcco/coc-vimlsp', {'do': 'yarn install --frozen-lockfile'}
+
+    " Yaml
+    Plug 'neoclide/coc-yaml', {'do': 'yarn install --frozen-lockfile'}
 
     set updatetime=300
     set shortmess+=c
