@@ -1,6 +1,9 @@
 function! SetNvimBuffersAndFiles()
   Plug 'Industrial/vim-smartbd'
   Plug 'Industrial/vim-smartbw'
+    " nmap <leader>d :SmartBd<cr>
+    nmap <leader>c :SmartBw<cr>
+    nnoremap <c-q> :SmartBw<cr>
 
   Plug 'Xuyuanp/nerdtree-git-plugin'
 
@@ -36,6 +39,13 @@ function! SetNvimBuffersAndFiles()
     let g:airline#extensions#tabline#left_alt_sep='|'
     let g:airline#extensions#tabline#formatter='unique_tail'
     let g:airline#extensions#whitespace#enabled=1
+
+  " File Explorer
+  Plug 'weirongxu/coc-explorer', {'do': 'yarn install --frozen-lockfile'}
+    :nnoremap <leader>[ :CocCommand explorer<cr>
+
+  " Ctrl + P File Search
+  :nnoremap <c-p> :Files<cr>
 endfunction
 
 function! FinalizeNvimBuffersAndFiles()
@@ -68,10 +78,7 @@ function! SetNvimCompletion()
     Plug 'voldikss/coc-dash-complete', {'do': 'yarn install --frozen-lockfile'}
     Plug 'voldikss/coc-dot-complete', {'do': 'yarn install --frozen-lockfile'}
     Plug 'neoclide/coc-snippets', {'do': 'yarn install --frozen-lockfile'}
-    Plug 'weirongxu/coc-explorer', {'do': 'yarn install --frozen-lockfile'}
-      :nnoremap <leader>[ :CocCommand explorer<cr>
-      " TODO: wincmd doesn't work.
-      " autocmd VimEnter * :CocCommand explorer | wincmd l
+    Plug 'neoclide/coc-tabnine'
 
     " CSS
     Plug 'neoclide/coc-css', {'do': 'yarn install --frozen-lockfile'}
@@ -123,7 +130,8 @@ function! SetNvimCompletion()
     " position. Coc only does snippet and additional edit on confirm.
     " <cr> could be remapped by other vim plugin, try `:verbose imap <cr>`.
     if exists('*complete_info')
-      inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<cr>"
+      "inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<cr>"
+      inoremap <expr> <cr> pumvisible() ? complete_info()["selected"] == "-1" ? "\<C-n>\<C-y>" : "\<C-y>" : "\<C-g>u\<cr>"
     else
       inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
       inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
@@ -262,9 +270,12 @@ function! SetNvimFindingSearchingReplacing()
   "source ~/.fzf/plugin/fzf.vim
   Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
   Plug 'junegunn/fzf.vim'
+    nnoremap <c-f> :Rg<cr>
 
   " keybind: gc
   Plug 'tomtom/tcomment_vim'
+    nnoremap <c-_> :TComment<cr>
+    vnoremap <c-_> :TCommentMaybeInline<cr>
 endfunction
 
 function! SetNvimIndentation()
@@ -288,15 +299,6 @@ function! SetNvimMovement()
   " keep a certain number of lines visible (center the cursor, document moves
   " under it)
   set scrolloff=50
-
-
-  " TODO: nvim only
-  " improved buffer delete
-  Plug 'Industrial/vim-smartbd'
-  Plug 'Industrial/vim-smartbw'
-
-  " nmap <leader>d :SmartBd<cr>
-  nmap <leader>c :SmartBw<cr>
 endfunction
 
 function! SetNvimTmuxSupport()
@@ -315,7 +317,7 @@ function! SetNvimTmuxSupport()
 endfunction
 
 function! SetNvimVersionControl()
-  " # Version Control
+  " Version Control
   Plug 'tpope/vim-fugitive'
   Plug 'junegunn/gv.vim'
   Plug 'mhinz/vim-signify'
@@ -346,7 +348,7 @@ function! SetNvimVisualInformation()
     let g:which_key_sep = '→'
     let g:which_key_use_floating_win = 0
 
-    let g:which_key_map =  {}
+    let g:which_key_map = {}
     let g:which_key_map['/'] = [":'<,'>TComment",                      'Comment']
     let g:which_key_map['d'] = [':call <SID>show_documentation()<cr>', 'Documentation']
     let g:which_key_map['S'] = [':Startify',                           'start screen']

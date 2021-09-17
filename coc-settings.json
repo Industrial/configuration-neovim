@@ -1,5 +1,9 @@
 {
-  "eslint.run": "onSave",
+  "eslint.autoFixOnSave": true,
   "eslint.packageManager": "yarn",
-  "eslint.autoFixOnSave": true
+  "eslint.run": "onSave",
+  "explorer.file.autoReveal": true,
+  "explorer.file.showHiddenFiles": true,
+  "explorer.icon.enableNerdfont": true,
+  "explorer.previewAction.onHover": true
 }
