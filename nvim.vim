@@ -252,17 +252,36 @@ function! SetNvimFileTypes()
   " Plug 'Epitrochoid/marko-vim-syntax'
 
   " Vim Wiki
-  " Plug 'vimwiki/vimwiki', { 'branch': 'dev' }
-  "   let wiki_default = {}
-  "   let wiki_default.syntax = 'markdown'
-  "   let wiki_default.ext = '.md'
-  "
-  "   let g:vimwiki_list = [
-  "     \ wiki_default ]
-  "
-  " let g:vimwiki_ext2syntax = {
-  "     \ '.md': 'markdown',
-  "     \ '.mkd': 'markdown' }
+  Plug 'vimwiki/vimwiki', { 'branch': 'dev' }
+    let wiki_default = {}
+    let wiki_default.path = '~/vimwiki/'
+    let wiki_default.syntax = 'markdown'
+    let wiki_default.ext = '.md'
+
+    let g:vimwiki_list = [
+      \ wiki_default ]
+
+    let g:vimwiki_ext2syntax = {
+      \ '.md': 'markdown',
+      \ '.mkd': 'markdown' }
+
+    let g:vimwiki_global_ext = 0
+
+    " Disable these map groups
+    let g:vimwiki_key_mappings =
+      \ {
+      \ 'html': 0,
+      \ 'table_mappings': 0,
+      \ }
+
+    nmap <Leader>Ww <Plug>VimwikiIndex
+    nmap <Leader>Wt <Plug>VimwikiTabIndex
+    nmap <Leader>Ws <Plug>VimwikiUISelect
+    nmap <Leader>Wi <Plug>VimwikiDiaryIndex
+    nmap <Leader>W<Leader>w <Plug>VimwikiMakeDiaryNote
+    nmap <Leader>W<Leader>t <Plug>VimwikiTabMakeDiaryNote
+    nmap <Leader>W<Leader>y <Plug>VimwikiMakeYesterdayDiaryNote
+    nmap <Leader>W<Leader>m <Plug>VimwikiMakeTomorrowDiaryNote
 endfunction
 
 function! SetNvimFindingSearchingReplacing()
@@ -292,8 +311,8 @@ function! SetNvimMovement()
   Plug 'Lokaltog/vim-easymotion'
 
   " switch buffers
-  map <tab> :bn<cr>
-  map <S-tab> :bp<cr>
+  nnoremap <tab> :bn<cr>
+  nnoremap <S-tab> :bp<cr>
 
   " move through splits
   nmap <C-h> <C-w>h
@@ -401,6 +420,20 @@ function! SetNvimVisualInformation()
       \ 'v': ['<C-W>v',     'Vertical'],
       \ '|': ['<C-W>v',     'Vertical'],
       \ '?': [':Windows',   'Windows'],
+      \ }
+
+    let g:which_key_map.W = {
+      \ 'name': '+Wiki ',
+      \ 'w': ['<Plug>VimwikiIndex', 'Index'],
+      \ 't': ['<Plug>VimwikiIndex', 'Tab Index'],
+      \ 's': ['<Plug>VimwikiUISelect', 'UI Select'],
+      \ 'i': ['<Plug>VimwikiDiaryIndex', 'Diary Index'],
+      \ ' ': {
+        \ 'w': ['<Plug>VimwikiMakeDiaryNote', 'Diary Note'],
+        \ 't': ['<Plug>VimwikiTabMakeDiaryNote', 'Tab Diary Note'],
+        \ 'y': ['<Plug>VimwikiMakeYesterdayDiaryNote', 'Yesterday Diary Note'],
+        \ 'm': ['<Plug>VimwikiMakeTomorrowDiaryNote', 'Tomorrow Diary Note'],
+        \ },
       \ }
 
     let g:which_key_map.s = {
