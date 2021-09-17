@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+pip install \
+  tasklib \
+  pynvim
+
 nvim -c "PlugUpgrade|qa"
 nvim -c "PlugUpdate|qa"
 nvim -c "PlugClean|qa"
