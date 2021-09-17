@@ -45,6 +45,7 @@ function! SetFindingSearchingReplacing()
   vmap <c-v> "+p
   vmap <c-c> "+y
   vmap <c-x> "+d
+  imap <c-v> "+p
 
   " Paste from Global Copy/Paste Register in Insert Mode.
   imap <c-v> <c-r>+
