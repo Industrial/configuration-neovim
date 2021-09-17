@@ -4,5 +4,14 @@ nvim -c "PlugUpgrade|qa"
 nvim -c "PlugUpdate|qa"
 nvim -c "PlugClean|qa"
 
-nvim -c "Tmuxline airline_insert|TmuxlineSnapshot! ~/.tmuxline|qa"
-nvim -c "PromptlineSnapshot! ~/.promptline.sh airline"
+# This ensures that it runs inside a tmux session
+if [[ -n $TMUX ]]; then
+  nvim -c "Tmuxline airline_insert|TmuxlineSnapshot! ~/.tmuxline|qa"
+else
+  tmux new-session -d -s install_temp
+  tmux send-keys -t install_temp "nvim -c \"Tmuxline airline_insert|TmuxlineSnapshot! ~/.tmuxline|qa\"" Enter
+  tmux kill-session -t install_temp
+fi
+
+# Found that -c didn't work with promptline
+nvim "+PromptlineSnapshot! ~/.promptline.sh" "+qa"

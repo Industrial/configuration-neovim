@@ -10,6 +10,9 @@ function! SetNvimBuffersAndFiles()
   " Color the prompt like airline.
   " :PromptlineSnapshot! ~/.promptline.sh airline
   Plug 'edkolev/promptline.vim'
+    let g:promptline_preset='clear' " or 'full'
+    let g:promptline_theme='airline'
+    let g:promptline_powerline_symbols=1
 
   Plug 'vim-airline/vim-airline'
   Plug 'vim-airline/vim-airline-themes'
@@ -18,9 +21,9 @@ function! SetNvimBuffersAndFiles()
     let g:airline_right_sep=''
     let g:airline_right_alt_sep=''
 
+    let g:airline_detect_iminsert=1
     let g:airline_detect_modified=1
     let g:airline_detect_paste=1
-    let g:airline_detect_iminsert=1
     let g:airline_inactive_collapse=1
     let g:airline_powerline_fonts=1
 
@@ -28,16 +31,18 @@ function! SetNvimBuffersAndFiles()
       let g:airline_symbols={}
     endif
 
-    let g:airline#extensions#tagbar#enabled=0
     let g:airline#extensions#ale#enabled=1
     let g:airline#extensions#branch#enabled=1
     let g:airline#extensions#csv#enabled=1
     let g:airline#extensions#hunks#enabled=0
+    let g:airline#extensions#promptline#enabled=0
     let g:airline#extensions#syntastic#enabled=1
     let g:airline#extensions#tabline#enabled=1
-    let g:airline#extensions#tabline#left_sep=' '
-    let g:airline#extensions#tabline#left_alt_sep='|'
     let g:airline#extensions#tabline#formatter='unique_tail'
+    let g:airline#extensions#tabline#left_alt_sep='|'
+    let g:airline#extensions#tabline#left_sep=' '
+    let g:airline#extensions#tagbar#enabled=0
+    let g:airline#extensions#tmuxline#enabled=0
     let g:airline#extensions#whitespace#enabled=1
 
   " File Explorer
