@@ -282,9 +282,6 @@ function! SetNvimFileTypes()
     nmap <Leader>W<Leader>t <Plug>VimwikiTabMakeDiaryNote
     nmap <Leader>W<Leader>y <Plug>VimwikiMakeYesterdayDiaryNote
     nmap <Leader>W<Leader>m <Plug>VimwikiMakeTomorrowDiaryNote
-
-  Plug 'tools-life/taskwiki'
-    Plug 'powerman/vim-plugin-AnsiEsc'
 endfunction
 
 function! SetNvimFindingSearchingReplacing()
