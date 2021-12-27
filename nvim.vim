@@ -457,7 +457,7 @@ function! SetNvimVisualInformation()
       \ 'y': [':Filetypes', 'File Types'],
       \ }
 
-    let g:which_key_map.v = {
+    let g:which_key_map.f = {
       \ 'name': '+FindReplace ',
       \ 'o': ['<Plug>EgMapGrepOptions', 'Options Buffer'],
       \ 'v': ['<Plug>EgMapGrepCurrentWord_v', 'Grep Word'],
@@ -494,6 +494,13 @@ function! SetNvimVisualInformation()
         \ '|': [':<SNR>70_EchoOptionsSet()<cr>',                   'Echo Options Set'],
         \ '*': [':<SNR>70_ToggleFileAssociationsInExplorer()<cr>', 'Toggle File Associations In Explorer'],
         \ },
+      \ }
+
+    let g:which_key_map.F = {
+      \ 'name': '+Folds ',
+      \ 'c': [':call ToggleClassFoldMode()<cr>',    'Class'],
+      \ 'f': [':call ToggleFunctionFoldMode()<cr>', 'Function'],
+      \ 'd': [':call SetDefaultFoldMode()<cr>',     'Default'],
       \ }
 
     " Register Which Key Map
@@ -547,9 +554,9 @@ function! SetNvimVisualInformation()
 
   " - Maps
     " Toggle fold mode
-    nnoremap <leader>fc :call ToggleClassFoldMode()<cr>
-    nnoremap <leader>ff :call ToggleFunctionFoldMode()<cr>
-    nnoremap <leader>fm :call SetDefaultFoldMode()<cr>
+    nnoremap <leader>Fc :call ToggleClassFoldMode()<cr>
+    nnoremap <leader>Ff :call ToggleFunctionFoldMode()<cr>
+    nnoremap <leader>Fm :call SetDefaultFoldMode()<cr>
 endfunction
 
 function! SetNvimDefaultFoldMode()
