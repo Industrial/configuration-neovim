@@ -78,7 +78,7 @@ function! SetNvimCompletion()
   " complete brackets / pairs
   Plug 'Raimondi/delimitMate'
 
-  Plug 'neoclide/coc.nvim', {'branch': 'release'}
+  Plug 'neoclide/coc.nvim', {'branch': 'release', 'do': 'yarn install --frozen-lockfile'}
     " Generic
     Plug 'voldikss/coc-dash-complete', {'do': 'yarn install --frozen-lockfile'}
     Plug 'voldikss/coc-dot-complete', {'do': 'yarn install --frozen-lockfile'}
