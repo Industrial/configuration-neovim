@@ -1,5 +1,6 @@
 .git/
 autoload/plug.vim.old
 backup/*
-undo/*
+plugin/packer_compiled.lua
 temp/*
+undo/*
