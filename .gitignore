@@ -1,4 +1,5 @@
 .git/
 autoload/plug.vim.old
 backup/*
-plugged/*
+undo/*
+temp/*
