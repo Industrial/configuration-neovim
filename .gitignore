@@ -1,3 +1,4 @@
+.git/
 autoload/plug.vim.old
 backup/*
 plugged/*
