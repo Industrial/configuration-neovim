@@ -1,6 +1,4 @@
-local m = {}
-
-m.defaultFoldMode = function()
+defaultFoldMode = () ->
   -- set the fold method to manual
   vim.opt.foldmethod = 'manual'
 
@@ -22,9 +20,8 @@ m.defaultFoldMode = function()
   -- turn on a fold column of 1
   -- TODO: This does not apply correctly.
   vim.opt.foldcolumn = '1'
-end
 
-m.classFoldMode = function()
+classFoldMode = () ->
   -- set the fold method to manual
   vim.opt.foldmethod = 'indent'
 
@@ -43,9 +40,8 @@ m.classFoldMode = function()
   -- turn on a fold column of 1
   -- TODO: This does not apply correctly.
   vim.opt.foldcolumn = '3'
-end
 
-m.functionFoldMode = function()
+functionFoldMode = () ->
   -- set the fold method to manual
   vim.opt.foldmethod = 'indent'
 
@@ -64,6 +60,10 @@ m.functionFoldMode = function()
   -- turn on a fold column of 1
   -- TODO: This does not apply correctly.
   vim.opt.foldcolumn = '1'
-end
 
-return m
+m =
+  defaultFoldMode: defaultFoldMode
+  classFoldMode: classFoldMode
+  functionFoldMode: functionFoldMode
+
+m

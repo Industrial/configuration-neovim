@@ -1,6 +1,4 @@
--- Disable NetRW
-vim.g.loaded_netrw = 1
-vim.g.loaded_netrwPlugin = 1
+local packer = require('packer')
 
 -- Install plugin manager
 local install_path = vim.fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
@@ -14,9 +12,13 @@ if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
   install_plugins = true
 end
 
-require('packer').startup(function(use)
+packer.startup(function(use)
   -- Package manager
   use({ 'wbthomason/packer.nvim' })
+
+  -- MoonScript support
+  use({ 'leafo/moonscript-vim' })
+  use({ 'svermeulen/nvim-moonmaker' })
 
   -- WhichKey is used by many parts of the config, so load it first.
   use({
@@ -46,16 +48,27 @@ require('packer').startup(function(use)
   })
 
   require('backups')(use)
-  require('buffers-and-splits')(use)
+  require('buffers')(use)
+  require('close-file')(use)
   require('colorschemes')(use)
   require('completion')(use)
+  require('copy-paste')(use)
+  require('debugger')(use)
+  require('file-tabs')(use)
+  require('file-tree-sidebar')(use)
+  require('folds')(use)
   require('indentation')(use)
+  require('line-numbers')(use)
   require('movement')(use)
+  require('quickfix')(use)
+  require('save-file')(use)
   require('search')(use)
+  require('splits')(use)
+  require('status-line')(use)
   require('visual-information')(use)
 
   if install_plugins then
-    require('packer').sync()
+    packer.sync()
   end
 end)
 
@@ -63,9 +76,9 @@ if install_plugins then
   return
 end
 
+-- Disable NetRW
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+
 -- Set the map leader to space
 vim.g.mapleader = ' '
-
--- open and reload init.vim
--- vim.keymap.set('n', '<leader>i', ':edit ~/.config/nvim/init.vim<cr>', {})
--- vim.keymap.set('n', '<leader>I', ':bufdo :source ~/.config/nvim/init.vim<cr>:bufdo :filetype detect<cr>', {})

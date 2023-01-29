@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+nix-env -iA \
+  nixpkgs.neovim
+
 pip install \
   tasklib \
   pynvim
