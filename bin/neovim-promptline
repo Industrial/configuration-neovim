@@ -1,4 +1,0 @@
-#!/usr/bin/env bash
-
-# Found that -c didn't work with promptline
-nvim "+PromptlineSnapshot! ~/.promptline.sh" "+qa"
