@@ -4,4 +4,5 @@ nvim/backup/*
 nvim/lua/*
 nvim/plugin/packer_compiled.lua
 nvim/temp/*
+nvim/treesitter_parsers/*
 nvim/undo/*

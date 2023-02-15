@@ -1,4 +1,4 @@
-backupFiles = (use) ->
+backupFiles = () ->
   -- Make backups.
   vim.opt.backup = true
 
@@ -11,21 +11,21 @@ backupFiles = (use) ->
   -- When writing a file and a backup is made, make a copy of the file and overwrite the original.
   vim.opt.backupcopy = "yes"
 
-swapFiles = (use) ->
+swapFiles = () ->
   -- Use swap files.
   vim.opt.swapfile = true
 
   -- Directory to put swap files in.
   vim.opt.directory = vim.fn.expand "~/.config/nvim/temp"
 
-undoFiles = (use) ->
+undoFiles = () ->
   -- Use undo files.
   vim.opt.undofile = true
 
   -- Directory to put undo files in.
   vim.opt.undodir = vim.fn.expand "~/.config/nvim/undo"
 
-(use) ->
-  backupFiles use
-  swapFiles use
-  undoFiles use
+() ->
+  backupFiles!
+  swapFiles!
+  undoFiles!

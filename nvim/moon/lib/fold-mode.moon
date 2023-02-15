@@ -25,8 +25,8 @@ classFoldMode = () ->
   -- set the fold method to manual
   vim.opt.foldmethod = 'indent'
 
-  -- Set the fold level to 0.
-  vim.opt.foldlevel = 0
+  -- Set the fold level to 1.
+  vim.opt.foldlevel = 1
 
   -- But open all folds at level 1 when opening the file
   vim.opt.foldlevelstart = 1

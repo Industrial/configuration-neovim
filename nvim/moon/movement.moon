@@ -1,14 +1,10 @@
-mouse = (use) ->
+mouse = () ->
   -- Make the mouse usable everywhere.
   vim.opt.mouse = "a"
 
-comment = (use) ->
-  use {
-    "terrortylor/nvim-comment"
-    config: () ->
-      nvimComment = require "nvim_comment"
-      nvimComment.setup!
-  }
+comment = () ->
+  nvimComment = require "nvim_comment"
+  nvimComment.setup!
 
   -- Map <C-_> as well as <C-/> because apparently terminals are terrible.
   vim.keymap.set "n", "<C-_>", ":CommentToggle<cr>",
@@ -20,7 +16,7 @@ comment = (use) ->
   vim.keymap.set "v", "<C-/>", ":\"<,\">CommentToggle<cr>",
     noremap: true
 
-(use) ->
+() ->
   -- make movement keys wrap to the next/previous line
   vim.opt.whichwrap = "b,s,h,l,<,>,[,]"
 
@@ -31,5 +27,5 @@ comment = (use) ->
   -- under it)
   vim.opt.scrolloff = 50
 
-  mouse use
-  comment use
+  mouse!
+  comment!

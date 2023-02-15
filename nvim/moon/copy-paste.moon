@@ -1,4 +1,4 @@
-(use) ->
+() ->
   -- Global copy/paste register delete/yank/paste in normal mode.
   vim.keymap.set "n", "<leader>d", '"+d', {}
   vim.keymap.set "n", "<leader>y", '"+y', {}
